@@ -22,11 +22,12 @@ public class Board
 	/**
 	 * Randomly generates the board based on the size, number of bombs and where 
 	 * and how the user clicked
-	 * @param height
-	 * @param widith
-	 * @param row
-	 * @param col
-	 * @param click
+	 * @param The height of the board
+	 * @param The width of the board
+	 * @param The number of bombs on the board
+	 * @param The row of the click
+	 * @param The column of the click
+	 * @param A boolean array showing which spaces have been clicked
 	 */
 	public void generateBoard(int height, int width, int bombs, int row, int col, boolean[][] marked)
 	{
@@ -80,9 +81,9 @@ public class Board
 
 	/**
 	 * Updates the board based on where the user clicked
-	 * @param row
-	 * @param col
-	 * @param click
+	 * @param The row of the click
+	 * @param The column of the click
+	 * @param A boolean array showing which spaces have been clicked
 	 */
 	public void updateBoard(int row, int col, boolean[][] marked)
 	{
@@ -93,6 +94,7 @@ public class Board
 			int state = board[row][col];
 		
 			if(state != 9) {
+				//If space has no bombs in its radius, all tiles in its radius are opened
 				if(state == 0) {
 					if(row > 0 && col > 0 && !clicked[row - 1][col - 1]) {updateBoard(row - 1, col - 1, marked);}
 					if(row > 0 && !clicked[row - 1][col]) {updateBoard(row - 1, col, marked);}
@@ -112,7 +114,7 @@ public class Board
 
 	/**
 	 * Returns the 2d array for the board
-	 * @return 
+	 * @return The 2d array of the board
 	 */
 	public int[][] getBoard()
 	{
@@ -121,7 +123,7 @@ public class Board
 	
 	/**
 	 * Returns the 2d array for the spaces on the board that have been clicked
-	 * @return
+	 * @return A boolean array showing which spaces have been clicked
 	 */
 	public boolean[][] getClicked()
 	{
@@ -129,9 +131,8 @@ public class Board
 	}
 
 	/**
-	 * Returns the state of the board, 0 if game still progressing, 1 if player
-	 * blew up, 2 if all tiles cleared
-	 * @return
+	 * Returns the state of the board
+	 * @return The state of the board: 0 if game still progressing, 1 if player blew up, 2 if all tiles cleared
 	 */
 	public int getBoardState()
 	{
